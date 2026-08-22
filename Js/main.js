@@ -347,22 +347,30 @@ function renderList() {
   transactions.forEach((tx, idx) => {
     const cat = tx.category.toLowerCase();
     const li  = document.createElement('li');
-    li.className = 'transaction-item';
+    li.className = 'flex items-center justify-between gap-3 p-4 rounded-xl bg-gray-800/60 border border-gray-700/50 hover:border-gray-600 transition duration-200 transaction-item';
 
     // Only animate: top item on fresh add, or all items on first render
     if (idx === 0 || isFirst) li.classList.add('tx-enter');
+
+    // Build badge classes based on category
+    const badgeClasses = {
+      'food': 'bg-orange-500/20 text-orange-400',
+      'transport': 'bg-blue-500/20 text-blue-400',
+      'fun': 'bg-purple-500/20 text-purple-400'
+    };
+    const badgeClass = badgeClasses[cat] || 'bg-gray-500/20 text-gray-400';
 
     // Build inner HTML — avoid extra wrapper divs
     li.innerHTML =
       `<div class="flex-1 min-w-0">` +
         `<p class="text-sm font-medium text-gray-100 truncate">${escapeHtml(tx.name)}</p>` +
         `<div class="flex items-center gap-2 mt-1">` +
-          `<span class="badge badge-${cat}">${escapeHtml(catLabel(tx.category))}</span>` +
+          `<span class="text-xs font-semibold px-2.5 py-1 rounded-full whitespace-nowrap ${badgeClass}">${escapeHtml(catLabel(tx.category))}</span>` +
           `<span class="text-xs text-gray-500">${formatDate(tx.id)}</span>` +
         `</div>` +
       `</div>` +
       `<p class="text-sm font-semibold text-white flex-shrink-0">${formatCurrency(tx.amount)}</p>` +
-      `<button class="delete-btn" aria-label="${escapeHtml(ui.deleteLabel(tx.name))}" data-id="${tx.id}">` +
+      `<button class="text-gray-600 hover:text-red-400 active:text-red-500 transition duration-200 cursor-pointer rounded-lg hover:bg-red-400/10 active:bg-red-400/20 flex-shrink-0 flex items-center justify-center delete-btn" aria-label="${escapeHtml(ui.deleteLabel(tx.name))}" data-id="${tx.id}" style="min-width: 40px; min-height: 40px;">` +
         `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">` +
           `<path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4h6v3M3 7h18"/>` +
         `</svg>` +
