@@ -88,10 +88,200 @@
         background-color: #4b5563;
         border-radius: 9999px;
       }
+
+      /* ── Theme Toggle Switch ── */
+      .theme-toggle {
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        user-select: none;
+        z-index: 50;
+      }
+
+      .theme-toggle-switch {
+        position: relative;
+        width: 50px;
+        height: 28px;
+        background-color: #4b5563;
+        border-radius: 14px;
+        transition: background-color 0.3s ease;
+        border: 1px solid #374151;
+      }
+
+      .theme-toggle-switch::after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 24px;
+        height: 24px;
+        background-color: white;
+        border-radius: 50%;
+        transition: left 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      body.light-mode .theme-toggle-switch {
+        background-color: #fbbf24;
+      }
+
+      body.light-mode .theme-toggle-switch::after {
+        left: 24px;
+      }
+
+      body.light-mode {
+        background-color: #f9fafb;
+        color: #1f2937;
+      }
+
+      body.light-mode .bg-gray-950 {
+        background-color: #f3f4f6;
+      }
+
+      body.light-mode .bg-gray-900 {
+        background-color: #f0f4f8;
+      }
+
+      body.light-mode .bg-gray-800 {
+        background-color: #e5e7eb;
+      }
+
+      body.light-mode .bg-gray-800\/60 {
+        background-color: rgba(229, 231, 235, 0.6);
+      }
+
+      body.light-mode .text-gray-100 {
+        color: #1f2937;
+      }
+
+      body.light-mode .text-gray-200 {
+        color: #374151;
+      }
+
+      body.light-mode .text-gray-400 {
+        color: #6b7280;
+      }
+
+      body.light-mode .text-gray-500 {
+        color: #6b7280;
+      }
+
+      body.light-mode .text-gray-600 {
+        color: #6b7280;
+      }
+
+      body.light-mode .text-white {
+        color: #1f2937;
+      }
+
+      body.light-mode .border-gray-800 {
+        border-color: #d1d5db;
+      }
+
+      body.light-mode .border-gray-700 {
+        border-color: #d1d5db;
+      }
+
+      body.light-mode .border-gray-700\/50 {
+        border-color: rgba(209, 213, 219, 0.5);
+      }
+
+      body.light-mode .placeholder-gray-500::placeholder {
+        color: #9ca3af;
+      }
+
+      body.light-mode .hover\:border-gray-600:hover {
+        border-color: #d1d5db;
+      }
+
+      body.light-mode input::placeholder {
+        color: #9ca3af !important;
+      }
+
+      body.light-mode input,
+      body.light-mode select {
+        background-color: #ffffff !important;
+        color: #1f2937 !important;
+        border-color: #d1d5db !important;
+      }
+
+      body.light-mode input:focus,
+      body.light-mode select:focus {
+        background-color: #f3f4f6 !important;
+      }
+
+      body.light-mode .btn-primary {
+        background-color: #4f46e5 !important;
+        color: #ffffff !important;
+      }
+
+      body.light-mode .btn-primary:hover {
+        background-color: #4338ca !important;
+      }
+
+      body.light-mode .btn-primary:active {
+        background-color: #3730a3 !important;
+      }
+
+      body.light-mode .locale-btn {
+        background-color: #e5e7eb;
+        color: #1f2937;
+        border-color: #d1d5db;
+      }
+
+      body.light-mode .locale-btn.bg-indigo-600 {
+        background-color: #4f46e5 !important;
+        color: #ffffff !important;
+        border-color: #4f46e5 !important;
+      }
+
+      body.light-mode .delete-btn {
+        color: #9ca3af !important;
+      }
+
+      body.light-mode .delete-btn:hover {
+        color: #ef4444 !important;
+        background-color: rgba(239, 68, 68, 0.1) !important;
+      }
+
+      body.light-mode .bg-orange-500\/20 {
+        background-color: rgba(249, 115, 22, 0.1) !important;
+      }
+
+      body.light-mode .bg-blue-500\/20 {
+        background-color: rgba(59, 130, 246, 0.1) !important;
+      }
+
+      body.light-mode .bg-purple-500\/20 {
+        background-color: rgba(168, 85, 247, 0.1) !important;
+      }
+
+      /* Category colors for light mode */
+      body.light-mode .text-orange-400 {
+        color: #ea580c !important;
+      }
+
+      body.light-mode .text-blue-400 {
+        color: #0284c7 !important;
+      }
+
+      body.light-mode .text-purple-400 {
+        color: #7c3aed !important;
+      }
     </style>
   </head>
 
   <body class="bg-gray-950 text-gray-100 min-h-screen p-3 sm:p-5 md:p-8 pb-10">
+    <!-- Theme Toggle (Top Right) -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme"><div class="theme-toggle-switch"></div></button>
+
     <!-- ===== HEADER ===== -->
     <header class="max-w-5xl mx-auto mb-6 md:mb-8">
       <div class="flex flex-col gap-4">
